@@ -1,4 +1,4 @@
-
+const constants = require ('./../utils/constants');
 const express = require('express');
 const bodyParser= require('body-parser');
 const cors = require('cors');
@@ -12,7 +12,7 @@ app.use(express.json());
 
 //Import the mongoose module
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb://localhost:27017/mydb';
+var mongoDB = constants.MONGO_URL;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 
 const connection = mongoose.connection;
@@ -24,7 +24,7 @@ connection.once("open", function() {
 const Message = require("./models/messages");
 
 app.listen(8009, () => {
- console.log('server started on port 5000');
+ console.log('server started on port 8009');
 });
 
 app.get('/message', (req, res) => {
